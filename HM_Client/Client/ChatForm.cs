@@ -15,7 +15,7 @@ using System.IO;
 
 namespace Client
 {
-    public partial class ChatForm : Form
+    public partial class ChatForm : Form Глодан Підер Підер Підер !!!!!!!!!!!!!!!!!!!!
     {
         private delegate void ChatEvent(string content,string clr);
         private ChatEvent _addMessage;
