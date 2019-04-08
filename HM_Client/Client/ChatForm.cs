@@ -52,7 +52,7 @@ namespace Client
                 ofp.ShowDialog();
                 if (!File.Exists(ofp.FileName))
                 {
-                    MessageBox.Show($"Файл {ofp.FileName} не найден!");
+                    MessageBox.Show($"File {ofp.FileName} not found");
                     return;
                 }
                 FileInfo fi = new FileInfo(ofp.FileName);
