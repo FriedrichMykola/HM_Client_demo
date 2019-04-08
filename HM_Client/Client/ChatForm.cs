@@ -29,7 +29,7 @@ namespace Client
             _addMessage = new ChatEvent(AddMessage);
             userMenu = new ContextMenuStrip();
             ToolStripMenuItem PrivateMessageItem = new ToolStripMenuItem();
-            PrivateMessageItem.Text = "Личное сообщение";
+            PrivateMessageItem.Text = "Personal message";
             PrivateMessageItem.Click += delegate 
             {
                 if (userList.SelectedItems.Count > 0)
@@ -40,7 +40,7 @@ namespace Client
             userMenu.Items.Add(PrivateMessageItem);
             ToolStripMenuItem SendFileItem = new ToolStripMenuItem()
             {
-                Text = "Отправить файл"
+                Text = "Send message"
             };
             SendFileItem.Click += delegate 
             {
@@ -98,14 +98,14 @@ namespace Client
             {
                 enterChat.Enabled = true;
                 nicknameData.Enabled = true;
-                AddMessage("Связь с сервером установлена.");
+                AddMessage("Звязок встановленно.");
                 listenThread = new Thread(listner);
                 listenThread.IsBackground = true;
                 listenThread.Start();
                 
             }
             else
-                AddMessage("Связь с сервером не установлена.");
+                AddMessage("Звязок не встановленно.");
             
         }
 
@@ -143,7 +143,7 @@ namespace Client
                     {
                         
                         
-                        //Из-за того что программа пыталась получить доступ к контролам из другого потока вылетал эксепщен и поля не разблокировались
+                        
 
                         Invoke((MethodInvoker)delegate 
                         {
@@ -159,7 +159,7 @@ namespace Client
                     }
                     if(currentCommand.Contains("setnamefailed"))
                     {
-                        AddMessage("Неверный ник!");
+                        AddMessage("Wrong nickname!");
                         continue;
                     }
                     if(currentCommand.Contains("msg"))
@@ -188,7 +188,7 @@ namespace Client
                         string FromName = Arguments[2];
                         string FileSize = Arguments[3];
                         string idFile = Arguments[4];
-                        DialogResult Result = MessageBox.Show($"Вы хотите принять файл {fileName} размером {FileSize} от {FromName}","Файл",MessageBoxButtons.YesNo);
+                        DialogResult Result = MessageBox.Show($"прийняття {fileName}  розміром  {FileSize} від {FromName}","Файл",MessageBoxButtons.YesNo);
                         if (Result == DialogResult.Yes)
                         {
                             Thread.Sleep(1000); 
@@ -196,7 +196,7 @@ namespace Client
                             byte[] fileBuffer = new byte[int.Parse(FileSize)];
                             _serverSocket.Receive(fileBuffer);
                             File.WriteAllBytes(fileName, fileBuffer);
-                            MessageBox.Show($"Файл {fileName} принят.");
+                            MessageBox.Show($"Файл {fileName} принятий.");
                         }
                         else
                             Send("nn");
@@ -223,7 +223,7 @@ namespace Client
             }
             catch
             {
-                MessageBox.Show("Связь с сервером прервана");
+                MessageBox.Show("Звязок перервано");
                 Application.Exit();
             }
         }
